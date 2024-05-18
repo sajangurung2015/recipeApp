@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %} 
+
+
+{% block content %} 
+
+<div class="container flex-column pt-3">
+    <section class="text-center">
+        <h1 class="main-title mx-auto">Recipe App</h1>
+
+        <p class="pt-4">
+            recipe app
+        </p>
+    </section>
+    <section>
+        <div class="container d-flex flex-row flex-wrap justify-content-center">
+            {% for recipe in recipes %} 
+            <a href="{% url 'recipe_detail' recipe.id %}" class="recipes" aria-label="Click to view {{recipe.title}}">
+                <div class="card m-3" style="width: 18rem;">
+                    <img src="{{recipe.image.url}}" class="card-img-top" alt="{{recipe.image_alt}}">
+                    <div class="card-body">
+                      <h2 class="card-title">{{recipe.title}}</h2>
+                      <p class="card-text">{{recipe.description|truncatechars:100}}</p>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+
+{% endblock %}
